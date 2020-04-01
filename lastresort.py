@@ -1,4 +1,5 @@
 import csv
+import os
 
 def openfile():
     try:
@@ -9,6 +10,25 @@ def openfile():
         f.close()
     except FileNotFoundError:
         print("BELUM ADA DATA")
+
+def insertdata():
+    print("Masukkan Data Berikut: ")
+    innama=input("Nama: ")
+    inkelas=input("Kelas: ")
+    innilai=input("Nilai: ")
+    lst=[innama, inkelas, innilai]
+
+    if os.path.isfile('siswa.csv'):
+        f1 = open('siswa.csv', 'a+', newline='' )
+        tulis = csv.writer(f1)
+        tulis.writerow(lst)
+        f1.close()
+    else:
+        f2 = open('siswa.csv', 'w')
+        w = csv.writer(f2) 
+        w.writerow(('Nama','Kelas','Nilai'))
+        w.writerow(lst)
+        f2.close()      
 
 
 menu = {}
@@ -26,7 +46,7 @@ while True:
     if selection =='1': 
         openfile()
     elif selection == '2': 
-        print ("insert data")
+        insertdata()
     elif selection == '3':
         print ("edit")
     elif selection == '4':
