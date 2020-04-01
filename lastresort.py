@@ -1,3 +1,16 @@
+import csv
+
+def openfile():
+    try:
+        f = open('siswa.csv', 'r')
+        reader = csv.reader(f)
+        for row in reader:  
+            print (row)
+        f.close()
+    except FileNotFoundError:
+        print("BELUM ADA DATA")
+
+
 menu = {}
 menu['1']="Show Data" 
 menu['2']="Insert Data"
@@ -11,7 +24,7 @@ while True:
         print (entry, menu[entry])
     selection=input("Pilih Nomor Menu:") 
     if selection =='1': 
-        print ("Show") 
+        openfile()
     elif selection == '2': 
         print ("insert data")
     elif selection == '3':
@@ -22,3 +35,5 @@ while True:
         exit()
     else: 
         print ("Pilihan Tidak dikenal, silahkan ulangi")
+
+
